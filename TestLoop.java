@@ -50,5 +50,6 @@ public class TestLoop {
             numsSum += i;
         }
         System.out.println("Sum of numbers between the range: " + numsSum);
+        scanner.close();
     }
 }
