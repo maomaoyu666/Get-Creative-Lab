@@ -46,6 +46,14 @@ public class TestLoop {
         System.out.println("Please enter an end integer:");
         int endInt = scanner.nextInt();
         int numsSum = 0;
+        int tmp = 0;
+        if (startInt > endInt) {
+            tmp = endInt;
+            endInt = startInt;
+            startInt = tmp;
+        } else if (startInt == endInt) {
+            System.out.println("Sum of numbers between the range: " + startInt);
+        }
         for (int i = startInt; i <= endInt; i++) {
             numsSum += i;
         }
