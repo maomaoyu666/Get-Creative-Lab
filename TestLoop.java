@@ -52,7 +52,8 @@ public class TestLoop {
             endInt = startInt;
             startInt = tmp;
         } else if (startInt == endInt) {
-            System.out.println("Sum of numbers between the range: " + startInt);
+            System.out.println(The start integer is equal to the end integer. The sum is: " + startInt);
+            return;
         }
         for (int i = startInt; i <= endInt; i++) {
             numsSum += i;
