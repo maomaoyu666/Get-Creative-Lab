@@ -1,86 +1,120 @@
-// Parent Class
-public class Vehicle {
-    private String brand;
-    protected int speed;
+public class VehicleExample {
 
-    public Vehicle(String brand) {
-        this.brand = brand;
+    // Vehicle base class
+    public static class Vehicle {
+        private String model;
+        protected String brand;
+        public int year;
+
+        public Vehicle(String brand, String model, int year) {
+            this.brand = brand;
+            this.model = model;
+            this.year = year;
+        }
+
+        public String displayInfo() {
+            return "Brand: " + this.brand + ", Model: " + this.model + ", Year: " + this.year;
+        }
     }
 
-    public String getBrand() {
-        return this.brand;
-    }
-}
+    // Subclasses
+    public static class Car extends Vehicle {
+        public int doors;
 
-// Child Class 1
-final class Car extends Vehicle {
-    private String type;
-
-    public Car(String brand, String type) {
-        super(brand);
-        this.type = type;
+        public Car(String brand, String model, int year, int doors) {
+            super(brand, model, year);
+            this.doors = doors;
+        }
     }
 
-    public String getType() {
-        return type;
-    }
-}
+    public static class Truck extends Vehicle {
+        public int payload;
 
-// Child Class 2
-final class Bike extends Vehicle {
-    private boolean hasTrainingWheels;
-
-    public Bike(String brand, boolean hasTrainingWheels) {
-        super(brand);
-        this.hasTrainingWheels = hasTrainingWheels;
+        public Truck(String brand, String model, int year, int payload) {
+            super(brand, model, year);
+            this.payload = payload;
+        }
     }
 
-    public boolean hasTrainingWheels() {
-        return hasTrainingWheels;
-    }
-}
+    public static class Motorcycle extends Vehicle {
+        public int cc;
 
-// Child Class 3
-final class Truck extends Vehicle {
-    private int payloadCapacity;
-
-    public Truck(String brand, int payloadCapacity) {
-        super(brand);
-        this.payloadCapacity = payloadCapacity;
+        public Motorcycle(String brand, String model, int year, int cc) {
+            super(brand, model, year);
+            this.cc = cc;
+        }
     }
 
-    public int getPayloadCapacity() {
-        return payloadCapacity;
-    }
-}
+    public static class Bus extends Vehicle {
+        public int capacity;
 
-// Child Class 4
-final class Boat extends Vehicle {
-    private boolean isMotorized;
-
-    public Boat(String brand, boolean isMotorized) {
-        super(brand);
-        this.isMotorized = isMotorized;
+        public Bus(String brand, String model, int year, int capacity) {
+            super(brand, model, year);
+            this.capacity = capacity;
+        }
     }
 
-    public boolean isMotorized() {
-        return isMotorized;
+    // Recursive methods
+    public static int countdown(int n) {
+        if (n == 0) {
+            System.out.println("Blastoff!");
+            return 0;
+        } else {
+            System.out.println(n);
+            return countdown(n - 1);
+        }
     }
-}
 
-// Test class
-class VehicleTest {
+    public static int factorial(int n) {
+        if (n <= 1) {
+            return 1;
+        } else {
+            return n * factorial(n - 1);
+        }
+    }
+
+    public static int fibonacci(int n) {
+        if (n <= 1) {
+            return n;
+        } else {
+            return fibonacci(n - 1) + fibonacci(n - 2);
+        }
+    }
+
+    public static int sumOfDigits(int n) {
+        if (n == 0) {
+            return 0;
+        } else {
+            return n % 10 + sumOfDigits(n / 10);
+        }
+    }
+
+    public static String reverseString(String s) {
+        if (s.isEmpty()) {
+            return s;
+        } else {
+            return reverseString(s.substring(1)) + s.charAt(0);
+        }
+    }
+
     public static void main(String[] args) {
-        // Create instances of each vehicle
-        Car myCar = new Car("Tesla", "Hybrid");
-        Bike myBike = new Bike("Giant", false);
-        Truck myTruck = new Truck("Volvo", 10000);
-        Boat myBoat = new Boat("Yamaha", true);
+        // Call and demonstrate recursive methods
+        countdown(5);
+        System.out.println("Factorial of 5 is: " + factorial(5));
+        System.out.println("Fibonacci of 5 is: " + fibonacci(5));
+        System.out.println("Sum of digits in 12345 is: " + sumOfDigits(12345));
+        System.out.println("Reverse of 'hello' is: " + reverseString("hello"));
 
-        // Display information for each vehicle
-        System.out.println("My car is a " + myCar.getBrand() + " and is $" + myCar.getType());
-        System.out.println("My bike is a " + myBike.getBrand() + " and it is " + (myBike.hasTrainingWheels() ? "equipped with" : "not equipped with") + " training wheels.");
-        System.out.println("My truck is a " + myTruck.getBrand() + " and has a payload capacity of " + myTruck.getPayloadCapacity() + " kg.");
-        System.out.println("My boat is a " + myBoat.getBrand() + " and it is " + (myBoat.isMotorized() ? "motorized" : "not motorized") + ".");
+        // Vehicle instances
+        Car car = new Car("Toyota", "Corolla", 2020, 4);
+        Truck truck = new Truck("Ford", "F-150", 2019, 1000);
+        Motorcycle motorcycle = new Motorcycle("Harley-Davidson", "Street 750", 2021, 750);
+        Bus bus = new Bus("Volvo", "7900 Electric", 2022, 50);
+
+        // Display vehicle information
+        System.out.println(car.displayInfo());
+        System.out.println(truck.displayInfo());
+        System.out.println(motorcycle.displayInfo());
+        System.out.println(bus.displayInfo());
     }
 }
