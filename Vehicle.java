@@ -118,3 +118,4 @@ public class VehicleExample {
         System.out.println(bus.displayInfo());
     }
 }
+
